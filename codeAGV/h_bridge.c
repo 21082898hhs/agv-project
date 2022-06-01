@@ -58,8 +58,8 @@ ISR(TIMER2_OVF_vect)
 	{
 		PORT_RPWM_LV &= ~(1<<PIN_RPWM_LV);
 		PORT_LPWM_LV &= ~(1<<PIN_LPWM_LV);
-		PORT_RPWM_LA &= ~(1<<PIN_RPWM_LV);
-		PORT_LPWM_LA &= ~(1<<PIN_LPWM_LV);
+		PORT_RPWM_LA &= ~(1<<PIN_RPWM_LA);
+		PORT_LPWM_LA &= ~(1<<PIN_LPWM_LA);
 	}
 	else if (OCR2A != 0)
 	{

@@ -17,11 +17,11 @@
 #define lcd_D4_bit      PORTB2
 #define lcd_D4_ddr      DDRB
 
-#define lcd_E_port      PORTL                  // lcd Enable pin  --> D49 (D47)
+#define lcd_E_port      PORTL                  // lcd Enable pin  --> (D47)
 #define lcd_E_bit       PORTL2
 #define lcd_E_ddr       DDRL
 
-#define lcd_RS_port     PORTL                   // lcd RegisterSelect --> D48 (D46)
+#define lcd_RS_port     PORTL                   // lcd RegisterSelect --> (D46)
 #define lcd_RS_bit      PORTL3
 #define lcd_RS_ddr      DDRL
 

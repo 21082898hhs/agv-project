@@ -1,4 +1,5 @@
 /*
+
  */
 #include <avr/io.h>
 #include <util/delay.h>
@@ -21,8 +22,6 @@ int us_per_count;
 
 ISR (TIMER4_CAPT_vect)
 {
-
-
        if (TCCR4B & (1<<ICES4)) // On rising edge
       {
         TCCR4B &= ~(1<<ICES4); // Next time detect falling edge
@@ -41,31 +40,21 @@ ISR (TIMER4_CAPT_vect)
 
 ISR (TIMER4_COMPA_vect)
 {
-
         PORTC |= 1 << PINC4;
-        _delay_us(12);
+        _delay_us(10);
         PORTC &= ~(1 << PINC4);
-
-
 }
 
 
 void init_timer4()
 {
-
   TCCR4A |= (1 << WGM41);
-
-  TCCR4B |= 1 << CS41 | 1 << CS40; // prescaler 64
-
-  TIMSK4 |= 1 << OCIE4A | 1 << ICIE4;
-
+  TCCR4B |= (1 << CS41 | 1 << CS40); // prescaler 64
+  TIMSK4 |= (1 << OCIE4A | 1 << ICIE4);
   TCCR4B |= (1 << ICES4); // Input capture on rising edge
-
-  OCR4A = 17500;
-
+  OCR4A = 13;
   sei();
   us_per_count = 4; // 16MHz / 64 = 25000 counts/second => 1000000/250000
-
 }
 
 void init(void)
@@ -75,24 +64,21 @@ void init(void)
 
 int main(void)
 {
-    DDRE &= ~(1<<IRsensor);
+    static int IR_value, IR_oldvalue;
 
-    lcd_D7_ddr |= (1<<lcd_D7_bit);                  // 4 data lines - output
+    DDRE &= ~(1<<IRsensor);
+    lcd_D7_ddr |= (1<<lcd_D7_bit);
     lcd_D6_ddr |= (1<<lcd_D6_bit);
     lcd_D5_ddr |= (1<<lcd_D5_bit);
     lcd_D4_ddr |= (1<<lcd_D4_bit);
-
-// configure the microprocessor pins for the control lines
-    lcd_E_ddr |= (1<<lcd_E_bit);                    // E line - output
-    lcd_RS_ddr |= (1<<lcd_RS_bit);                  // RS line - output
+    lcd_E_ddr |= (1<<lcd_E_bit);
+    lcd_RS_ddr |= (1<<lcd_RS_bit);
 
 // initialize the LCD controller as determined by the defines (LCD instructions)
     lcd_init_4d();
     lcd_write_instruction_4d(xPosition(0) | lcd_LineOne);
     lcd_write_string_4d("Distance: ");
 
-
-    static int IR_value, IR_oldvalue;
 
     DDRC |= 1 << PINC4;
     PORTC &= ~(1 << PINC4);
@@ -106,12 +92,13 @@ int main(void)
         IR_oldvalue = IR_value;
         if (PINE & (1<<IRsensor))
         {
-            IR_value = detected;
+            IR_value = notDetected;
         }
         else
         {
-            IR_value = notDetected;
+            IR_value = detected;
         }
+
 
         if(IR_value == IR_oldvalue)
         {
@@ -119,7 +106,7 @@ int main(void)
             {
 
                 lcd_write_instruction_4d(xPosition(0) | lcd_LineTwo);
-                lcd_write_string_4d("Object detected");
+                lcd_write_string_4d("Object detected ");
             }
 
             if(IR_value == notDetected)
@@ -129,11 +116,12 @@ int main(void)
             }
         }
 
+
         lcd_write_instruction_4d(xPosition(10) | lcd_LineOne);
         LCDWriteInt(dist, 3);
 
-        h_bridge_set_percentage_rechts(80);
-        h_bridge_set_percentage_links(-80);
+        h_bridge_set_percentage_rechts(-40);
+        h_bridge_set_percentage_links(40);
     }
     return 0;
 }
