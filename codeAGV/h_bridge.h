@@ -15,9 +15,9 @@
 
 // The settings below are for the Mega, modify
 // in case you want to use other pins
-#define PORT_RPWM_RV	PORTE
-#define PIN_RPWM_RV 	PE4         //pin d2
-#define DDR_RPWM_RV 	DDRE
+#define PORT_RPWM_RV	PORTH
+#define PIN_RPWM_RV 	PH3         //pin d2
+#define DDR_RPWM_RV 	DDRH
 
 #define PORT_LPWM_RV	PORTE
 #define PIN_LPWM_RV 	PE5         //pin d3
@@ -31,9 +31,9 @@
 #define PIN_LPWM_RA 	PE3         //pin d5
 #define DDR_LPWM_RA 	DDRE
 
-#define PORT_RPWM_LV	PORTB
-#define PIN_RPWM_LV 	PB4         //pin d10
-#define DDR_RPWM_LV 	DDRB
+#define PORT_RPWM_LV	PORTH
+#define PIN_RPWM_LV 	PH6         //pin d10
+#define DDR_RPWM_LV 	DDRH
 
 #define PORT_LPWM_LV	PORTB
 #define PIN_LPWM_LV 	PB5         //pin d11

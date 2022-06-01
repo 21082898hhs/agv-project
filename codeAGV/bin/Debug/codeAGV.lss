@@ -3,31 +3,31 @@ bin\Debug\codeAGV.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000134  00800200  000038b4  00003968  2**0
+  0 .data         00000136  00800200  000038b4  00003968  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   1 .text         000038b4  00000000  00000000  000000b4  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000000e  00800334  00800334  00003a9c  2**0
+  2 .bss          0000000e  00800336  00800336  00003a9e  2**0
                   ALLOC
-  3 .fuse         00000003  00820000  00820000  00003a9c  2**0
+  3 .fuse         00000003  00820000  00820000  00003a9e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .debug_aranges 00000200  00000000  00000000  00003a9f  2**0
+  4 .debug_aranges 00000200  00000000  00000000  00003aa1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_pubnames 000003f8  00000000  00000000  00003c9f  2**0
+  5 .debug_pubnames 000003f8  00000000  00000000  00003ca1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000032a1  00000000  00000000  00004097  2**0
+  6 .debug_info   000032a1  00000000  00000000  00004099  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000016b4  00000000  00000000  00007338  2**0
+  7 .debug_abbrev 000016b4  00000000  00000000  0000733a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000024cc  00000000  00000000  000089ec  2**0
+  8 .debug_line   000024cc  00000000  00000000  000089ee  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000330  00000000  00000000  0000aeb8  2**2
+  9 .debug_frame  00000330  00000000  00000000  0000aebc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000054c  00000000  00000000  0000b1e8  2**0
+ 10 .debug_str    0000054c  00000000  00000000  0000b1ec  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000009ce  00000000  00000000  0000b734  2**0
+ 11 .debug_loc    000009ce  00000000  00000000  0000b738  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000050  00000000  00000000  0000c102  2**0
+ 12 .debug_ranges 00000050  00000000  00000000  0000c106  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -112,13 +112,13 @@ Disassembly of section .text:
      102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
      104:	07 90       	elpm	r0, Z+
      106:	0d 92       	st	X+, r0
-     108:	a4 33       	cpi	r26, 0x34	; 52
+     108:	a6 33       	cpi	r26, 0x36	; 54
      10a:	b1 07       	cpc	r27, r17
      10c:	d9 f7       	brne	.-10     	; 0x104 <__do_copy_data+0x10>
 
 0000010e <__do_clear_bss>:
      10e:	13 e0       	ldi	r17, 0x03	; 3
-     110:	a4 e3       	ldi	r26, 0x34	; 52
+     110:	a6 e3       	ldi	r26, 0x36	; 54
      112:	b3 e0       	ldi	r27, 0x03	; 3
      114:	01 c0       	rjmp	.+2      	; 0x118 <.do_clear_bss_start>
 
@@ -126,7 +126,7 @@ Disassembly of section .text:
      116:	1d 92       	st	X+, r1
 
 00000118 <.do_clear_bss_start>:
-     118:	a2 34       	cpi	r26, 0x42	; 66
+     118:	a4 34       	cpi	r26, 0x44	; 68
      11a:	b1 07       	cpc	r27, r17
      11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
      11e:	0e 94 a3 14 	call	0x2946	; 0x2946 <main>
@@ -171,12 +171,12 @@ ISR(TIMER0_OVF_vect)
      15e:	e9 f4       	brne	.+58     	; 0x19a <__vector_23+0x70>
 	{
 		PORT_RPWM_RV &= ~(1<<PIN_RPWM_RV);
-     160:	ae e2       	ldi	r26, 0x2E	; 46
-     162:	b0 e0       	ldi	r27, 0x00	; 0
-     164:	ee e2       	ldi	r30, 0x2E	; 46
-     166:	f0 e0       	ldi	r31, 0x00	; 0
+     160:	a2 e0       	ldi	r26, 0x02	; 2
+     162:	b1 e0       	ldi	r27, 0x01	; 1
+     164:	e2 e0       	ldi	r30, 0x02	; 2
+     166:	f1 e0       	ldi	r31, 0x01	; 1
      168:	80 81       	ld	r24, Z
-     16a:	8f 7e       	andi	r24, 0xEF	; 239
+     16a:	87 7f       	andi	r24, 0xF7	; 247
      16c:	8c 93       	st	X, r24
 		PORT_LPWM_RV &= ~(1<<PIN_LPWM_RV);
      16e:	ae e2       	ldi	r26, 0x2E	; 46
@@ -220,12 +220,12 @@ ISR(TIMER0_OVF_vect)
      1ae:	8f 7d       	andi	r24, 0xDF	; 223
      1b0:	8c 93       	st	X, r24
 		PORT_RPWM_RV |= (1<<PIN_RPWM_RV);
-     1b2:	ae e2       	ldi	r26, 0x2E	; 46
-     1b4:	b0 e0       	ldi	r27, 0x00	; 0
-     1b6:	ee e2       	ldi	r30, 0x2E	; 46
-     1b8:	f0 e0       	ldi	r31, 0x00	; 0
+     1b2:	a2 e0       	ldi	r26, 0x02	; 2
+     1b4:	b1 e0       	ldi	r27, 0x01	; 1
+     1b6:	e2 e0       	ldi	r30, 0x02	; 2
+     1b8:	f1 e0       	ldi	r31, 0x01	; 1
      1ba:	80 81       	ld	r24, Z
-     1bc:	80 61       	ori	r24, 0x10	; 16
+     1bc:	88 60       	ori	r24, 0x08	; 8
      1be:	8c 93       	st	X, r24
 		PORT_LPWM_RA &= ~(1<<PIN_LPWM_RA);
      1c0:	ae e2       	ldi	r26, 0x2E	; 46
@@ -253,12 +253,12 @@ ISR(TIMER0_OVF_vect)
      1e6:	e1 f0       	breq	.+56     	; 0x220 <__vector_23+0xf6>
 	{
 		PORT_RPWM_RV &= ~(1<<PIN_RPWM_RV);
-     1e8:	ae e2       	ldi	r26, 0x2E	; 46
-     1ea:	b0 e0       	ldi	r27, 0x00	; 0
-     1ec:	ee e2       	ldi	r30, 0x2E	; 46
-     1ee:	f0 e0       	ldi	r31, 0x00	; 0
+     1e8:	a2 e0       	ldi	r26, 0x02	; 2
+     1ea:	b1 e0       	ldi	r27, 0x01	; 1
+     1ec:	e2 e0       	ldi	r30, 0x02	; 2
+     1ee:	f1 e0       	ldi	r31, 0x01	; 1
      1f0:	80 81       	ld	r24, Z
-     1f2:	8f 7e       	andi	r24, 0xEF	; 239
+     1f2:	87 7f       	andi	r24, 0xF7	; 247
      1f4:	8c 93       	st	X, r24
 		PORT_LPWM_RV |= (1<<PIN_LPWM_RV);
      1f6:	ae e2       	ldi	r26, 0x2E	; 46
@@ -329,12 +329,12 @@ ISR(TIMER0_COMPA_vect)
      268:	71 f0       	breq	.+28     	; 0x286 <__vector_21+0x48>
 	{
 		PORT_RPWM_RV &= ~(1<<PIN_RPWM_RV);
-     26a:	ae e2       	ldi	r26, 0x2E	; 46
-     26c:	b0 e0       	ldi	r27, 0x00	; 0
-     26e:	ee e2       	ldi	r30, 0x2E	; 46
-     270:	f0 e0       	ldi	r31, 0x00	; 0
+     26a:	a2 e0       	ldi	r26, 0x02	; 2
+     26c:	b1 e0       	ldi	r27, 0x01	; 1
+     26e:	e2 e0       	ldi	r30, 0x02	; 2
+     270:	f1 e0       	ldi	r31, 0x01	; 1
      272:	80 81       	ld	r24, Z
-     274:	8f 7e       	andi	r24, 0xEF	; 239
+     274:	87 7f       	andi	r24, 0xF7	; 247
      276:	8c 93       	st	X, r24
 		PORT_RPWM_RA &= ~(1<<PIN_RPWM_RA);
      278:	a4 e3       	ldi	r26, 0x34	; 52
@@ -454,12 +454,12 @@ ISR(TIMER2_OVF_vect)
      33e:	e9 f4       	brne	.+58     	; 0x37a <__vector_15+0x70>
 	{
 		PORT_RPWM_LV &= ~(1<<PIN_RPWM_LV);
-     340:	a5 e2       	ldi	r26, 0x25	; 37
-     342:	b0 e0       	ldi	r27, 0x00	; 0
-     344:	e5 e2       	ldi	r30, 0x25	; 37
-     346:	f0 e0       	ldi	r31, 0x00	; 0
+     340:	a2 e0       	ldi	r26, 0x02	; 2
+     342:	b1 e0       	ldi	r27, 0x01	; 1
+     344:	e2 e0       	ldi	r30, 0x02	; 2
+     346:	f1 e0       	ldi	r31, 0x01	; 1
      348:	80 81       	ld	r24, Z
-     34a:	8f 7e       	andi	r24, 0xEF	; 239
+     34a:	8f 7b       	andi	r24, 0xBF	; 191
      34c:	8c 93       	st	X, r24
 		PORT_LPWM_LV &= ~(1<<PIN_LPWM_LV);
      34e:	a5 e2       	ldi	r26, 0x25	; 37
@@ -469,21 +469,21 @@ ISR(TIMER2_OVF_vect)
      356:	80 81       	ld	r24, Z
      358:	8f 7d       	andi	r24, 0xDF	; 223
      35a:	8c 93       	st	X, r24
-		PORT_RPWM_LA &= ~(1<<PIN_RPWM_LV);
+		PORT_RPWM_LA &= ~(1<<PIN_RPWM_LA);
      35c:	a5 e2       	ldi	r26, 0x25	; 37
      35e:	b0 e0       	ldi	r27, 0x00	; 0
      360:	e5 e2       	ldi	r30, 0x25	; 37
      362:	f0 e0       	ldi	r31, 0x00	; 0
      364:	80 81       	ld	r24, Z
-     366:	8f 7e       	andi	r24, 0xEF	; 239
+     366:	8f 7b       	andi	r24, 0xBF	; 191
      368:	8c 93       	st	X, r24
-		PORT_LPWM_LA &= ~(1<<PIN_LPWM_LV);
+		PORT_LPWM_LA &= ~(1<<PIN_LPWM_LA);
      36a:	a5 e2       	ldi	r26, 0x25	; 37
      36c:	b0 e0       	ldi	r27, 0x00	; 0
      36e:	e5 e2       	ldi	r30, 0x25	; 37
      370:	f0 e0       	ldi	r31, 0x00	; 0
      372:	80 81       	ld	r24, Z
-     374:	8f 7d       	andi	r24, 0xDF	; 223
+     374:	8f 77       	andi	r24, 0x7F	; 127
      376:	8c 93       	st	X, r24
      378:	43 c0       	rjmp	.+134    	; 0x400 <__vector_15+0xf6>
 	}
@@ -503,12 +503,12 @@ ISR(TIMER2_OVF_vect)
      38e:	8f 7d       	andi	r24, 0xDF	; 223
      390:	8c 93       	st	X, r24
 		PORT_RPWM_LV |= (1<<PIN_RPWM_LV);
-     392:	a5 e2       	ldi	r26, 0x25	; 37
-     394:	b0 e0       	ldi	r27, 0x00	; 0
-     396:	e5 e2       	ldi	r30, 0x25	; 37
-     398:	f0 e0       	ldi	r31, 0x00	; 0
+     392:	a2 e0       	ldi	r26, 0x02	; 2
+     394:	b1 e0       	ldi	r27, 0x01	; 1
+     396:	e2 e0       	ldi	r30, 0x02	; 2
+     398:	f1 e0       	ldi	r31, 0x01	; 1
      39a:	80 81       	ld	r24, Z
-     39c:	80 61       	ori	r24, 0x10	; 16
+     39c:	80 64       	ori	r24, 0x40	; 64
      39e:	8c 93       	st	X, r24
 		PORT_LPWM_LA &= ~(1<<PIN_LPWM_LA);
      3a0:	a5 e2       	ldi	r26, 0x25	; 37
@@ -536,12 +536,12 @@ ISR(TIMER2_OVF_vect)
      3c6:	e1 f0       	breq	.+56     	; 0x400 <__vector_15+0xf6>
 	{
 		PORT_RPWM_LV &= ~(1<<PIN_RPWM_LV);
-     3c8:	a5 e2       	ldi	r26, 0x25	; 37
-     3ca:	b0 e0       	ldi	r27, 0x00	; 0
-     3cc:	e5 e2       	ldi	r30, 0x25	; 37
-     3ce:	f0 e0       	ldi	r31, 0x00	; 0
+     3c8:	a2 e0       	ldi	r26, 0x02	; 2
+     3ca:	b1 e0       	ldi	r27, 0x01	; 1
+     3cc:	e2 e0       	ldi	r30, 0x02	; 2
+     3ce:	f1 e0       	ldi	r31, 0x01	; 1
      3d0:	80 81       	ld	r24, Z
-     3d2:	8f 7e       	andi	r24, 0xEF	; 239
+     3d2:	8f 7b       	andi	r24, 0xBF	; 191
      3d4:	8c 93       	st	X, r24
 		PORT_LPWM_LV |= (1<<PIN_LPWM_LV);
      3d6:	a5 e2       	ldi	r26, 0x25	; 37
@@ -612,12 +612,12 @@ ISR(TIMER2_COMPA_vect)
      448:	71 f0       	breq	.+28     	; 0x466 <__vector_13+0x48>
 	{
 		PORT_RPWM_LV &= ~(1<<PIN_RPWM_LV);
-     44a:	a5 e2       	ldi	r26, 0x25	; 37
-     44c:	b0 e0       	ldi	r27, 0x00	; 0
-     44e:	e5 e2       	ldi	r30, 0x25	; 37
-     450:	f0 e0       	ldi	r31, 0x00	; 0
+     44a:	a2 e0       	ldi	r26, 0x02	; 2
+     44c:	b1 e0       	ldi	r27, 0x01	; 1
+     44e:	e2 e0       	ldi	r30, 0x02	; 2
+     450:	f1 e0       	ldi	r31, 0x01	; 1
      452:	80 81       	ld	r24, Z
-     454:	8f 7e       	andi	r24, 0xEF	; 239
+     454:	8f 7b       	andi	r24, 0xBF	; 191
      456:	8c 93       	st	X, r24
 		PORT_RPWM_LA &= ~(1<<PIN_RPWM_LA);
      458:	a5 e2       	ldi	r26, 0x25	; 37
@@ -714,12 +714,12 @@ void init_h_bridge(void)
      4f0:	de b7       	in	r29, 0x3e	; 62
 	// Config pins as output
 	DDR_RPWM_RV |= (1<<PIN_RPWM_RV);
-     4f2:	ad e2       	ldi	r26, 0x2D	; 45
-     4f4:	b0 e0       	ldi	r27, 0x00	; 0
-     4f6:	ed e2       	ldi	r30, 0x2D	; 45
-     4f8:	f0 e0       	ldi	r31, 0x00	; 0
+     4f2:	a1 e0       	ldi	r26, 0x01	; 1
+     4f4:	b1 e0       	ldi	r27, 0x01	; 1
+     4f6:	e1 e0       	ldi	r30, 0x01	; 1
+     4f8:	f1 e0       	ldi	r31, 0x01	; 1
      4fa:	80 81       	ld	r24, Z
-     4fc:	80 61       	ori	r24, 0x10	; 16
+     4fc:	88 60       	ori	r24, 0x08	; 8
      4fe:	8c 93       	st	X, r24
 	DDR_LPWM_RV |= (1<<PIN_LPWM_RV);
      500:	ad e2       	ldi	r26, 0x2D	; 45
@@ -746,12 +746,12 @@ void init_h_bridge(void)
      526:	88 60       	ori	r24, 0x08	; 8
      528:	8c 93       	st	X, r24
 	DDR_RPWM_LV |= (1<<PIN_RPWM_LV);
-     52a:	a4 e2       	ldi	r26, 0x24	; 36
-     52c:	b0 e0       	ldi	r27, 0x00	; 0
-     52e:	e4 e2       	ldi	r30, 0x24	; 36
-     530:	f0 e0       	ldi	r31, 0x00	; 0
+     52a:	a1 e0       	ldi	r26, 0x01	; 1
+     52c:	b1 e0       	ldi	r27, 0x01	; 1
+     52e:	e1 e0       	ldi	r30, 0x01	; 1
+     530:	f1 e0       	ldi	r31, 0x01	; 1
      532:	80 81       	ld	r24, Z
-     534:	80 61       	ori	r24, 0x10	; 16
+     534:	80 64       	ori	r24, 0x40	; 64
      536:	8c 93       	st	X, r24
 	DDR_LPWM_LV |= (1<<PIN_LPWM_LV);
      538:	a4 e2       	ldi	r26, 0x24	; 36
@@ -780,12 +780,12 @@ void init_h_bridge(void)
 
 	// Output low
 	PORT_RPWM_RV &= ~(1<<PIN_RPWM_RV);
-     562:	ae e2       	ldi	r26, 0x2E	; 46
-     564:	b0 e0       	ldi	r27, 0x00	; 0
-     566:	ee e2       	ldi	r30, 0x2E	; 46
-     568:	f0 e0       	ldi	r31, 0x00	; 0
+     562:	a2 e0       	ldi	r26, 0x02	; 2
+     564:	b1 e0       	ldi	r27, 0x01	; 1
+     566:	e2 e0       	ldi	r30, 0x02	; 2
+     568:	f1 e0       	ldi	r31, 0x01	; 1
      56a:	80 81       	ld	r24, Z
-     56c:	8f 7e       	andi	r24, 0xEF	; 239
+     56c:	87 7f       	andi	r24, 0xF7	; 247
      56e:	8c 93       	st	X, r24
 	PORT_LPWM_RV &= ~(1<<PIN_LPWM_RV);
      570:	ae e2       	ldi	r26, 0x2E	; 46
@@ -5854,8 +5854,6 @@ ISR (TIMER4_CAPT_vect)
     25d6:	cf 93       	push	r28
     25d8:	cd b7       	in	r28, 0x3d	; 61
     25da:	de b7       	in	r29, 0x3e	; 62
-
-
        if (TCCR4B & (1<<ICES4)) // On rising edge
     25dc:	e1 ea       	ldi	r30, 0xA1	; 161
     25de:	f0 e0       	ldi	r31, 0x00	; 0
@@ -5880,8 +5878,8 @@ ISR (TIMER4_CAPT_vect)
     25fe:	f0 e0       	ldi	r31, 0x00	; 0
     2600:	80 81       	ld	r24, Z
     2602:	91 81       	ldd	r25, Z+1	; 0x01
-    2604:	90 93 41 03 	sts	0x0341, r25
-    2608:	80 93 40 03 	sts	0x0340, r24
+    2604:	90 93 43 03 	sts	0x0343, r25
+    2608:	80 93 42 03 	sts	0x0342, r24
     260c:	4d c0       	rjmp	.+154    	; 0x26a8 <__vector_41+0xfc>
       }
       else // On falling edge
@@ -5899,25 +5897,25 @@ ISR (TIMER4_CAPT_vect)
     261e:	f0 e0       	ldi	r31, 0x00	; 0
     2620:	80 81       	ld	r24, Z
     2622:	91 81       	ldd	r25, Z+1	; 0x01
-    2624:	90 93 39 03 	sts	0x0339, r25
-    2628:	80 93 38 03 	sts	0x0338, r24
+    2624:	90 93 3b 03 	sts	0x033B, r25
+    2628:	80 93 3a 03 	sts	0x033A, r24
         counts = falling - rising;
-    262c:	20 91 38 03 	lds	r18, 0x0338
-    2630:	30 91 39 03 	lds	r19, 0x0339
-    2634:	80 91 40 03 	lds	r24, 0x0340
-    2638:	90 91 41 03 	lds	r25, 0x0341
+    262c:	20 91 3a 03 	lds	r18, 0x033A
+    2630:	30 91 3b 03 	lds	r19, 0x033B
+    2634:	80 91 42 03 	lds	r24, 0x0342
+    2638:	90 91 43 03 	lds	r25, 0x0343
     263c:	a9 01       	movw	r20, r18
     263e:	48 1b       	sub	r20, r24
     2640:	59 0b       	sbc	r21, r25
     2642:	ca 01       	movw	r24, r20
-    2644:	90 93 3f 03 	sts	0x033F, r25
-    2648:	80 93 3e 03 	sts	0x033E, r24
+    2644:	90 93 41 03 	sts	0x0341, r25
+    2648:	80 93 40 03 	sts	0x0340, r24
         //dist = us_per_count * counts / 58; //tijd van licht = 0,034cm/us * tijd van echo / 2 = 1/58 * tijd
         dist = us_per_count * counts * 0.17165;
-    264c:	20 91 3c 03 	lds	r18, 0x033C
-    2650:	30 91 3d 03 	lds	r19, 0x033D
-    2654:	80 91 3e 03 	lds	r24, 0x033E
-    2658:	90 91 3f 03 	lds	r25, 0x033F
+    264c:	20 91 3e 03 	lds	r18, 0x033E
+    2650:	30 91 3f 03 	lds	r19, 0x033F
+    2654:	80 91 40 03 	lds	r24, 0x0340
+    2658:	90 91 41 03 	lds	r25, 0x0341
     265c:	ac 01       	movw	r20, r24
     265e:	24 9f       	mul	r18, r20
     2660:	c0 01       	movw	r24, r0
@@ -5949,8 +5947,8 @@ ISR (TIMER4_CAPT_vect)
     2698:	0e 94 b1 19 	call	0x3362	; 0x3362 <__fixsfsi>
     269c:	dc 01       	movw	r26, r24
     269e:	cb 01       	movw	r24, r22
-    26a0:	90 93 3b 03 	sts	0x033B, r25
-    26a4:	80 93 3a 03 	sts	0x033A, r24
+    26a0:	90 93 3d 03 	sts	0x033D, r25
+    26a4:	80 93 3c 03 	sts	0x033C, r24
       }
 
 }
@@ -6006,7 +6004,6 @@ ISR (TIMER4_COMPA_vect)
     2704:	68 97       	sbiw	r28, 0x18	; 24
     2706:	de bf       	out	0x3e, r29	; 62
     2708:	cd bf       	out	0x3d, r28	; 61
-
         PORTC |= 1 << PINC4;
     270a:	a8 e2       	ldi	r26, 0x28	; 40
     270c:	b0 e0       	ldi	r27, 0x00	; 0
@@ -6017,7 +6014,7 @@ ISR (TIMER4_COMPA_vect)
     2716:	8c 93       	st	X, r24
     2718:	80 e0       	ldi	r24, 0x00	; 0
     271a:	90 e0       	ldi	r25, 0x00	; 0
-    271c:	a0 e4       	ldi	r26, 0x40	; 64
+    271c:	a0 e2       	ldi	r26, 0x20	; 32
     271e:	b1 e4       	ldi	r27, 0x41	; 65
     2720:	8d 8b       	std	Y+21, r24	; 0x15
     2722:	9e 8b       	std	Y+22, r25	; 0x16
@@ -6252,7 +6249,7 @@ _delay_loop_1(uint8_t __count)
     288e:	8a 95       	dec	r24
     2890:	f1 f7       	brne	.-4      	; 0x288e <__vector_42+0x1ba>
     2892:	89 83       	std	Y+1, r24	; 0x01
-        _delay_us(12);
+        _delay_us(10);
         PORTC &= ~(1 << PINC4);
     2894:	a8 e2       	ldi	r26, 0x28	; 40
     2896:	b0 e0       	ldi	r27, 0x00	; 0
@@ -6261,8 +6258,6 @@ _delay_loop_1(uint8_t __count)
     289c:	80 81       	ld	r24, Z
     289e:	8f 7e       	andi	r24, 0xEF	; 239
     28a0:	8c 93       	st	X, r24
-
-
 }
     28a2:	68 96       	adiw	r28, 0x18	; 24
     28a4:	de bf       	out	0x3e, r29	; 62
@@ -6298,7 +6293,6 @@ void init_timer4()
     28d6:	cf 93       	push	r28
     28d8:	cd b7       	in	r28, 0x3d	; 61
     28da:	de b7       	in	r29, 0x3e	; 62
-
   TCCR4A |= (1 << WGM41);
     28dc:	a0 ea       	ldi	r26, 0xA0	; 160
     28de:	b0 e0       	ldi	r27, 0x00	; 0
@@ -6307,8 +6301,7 @@ void init_timer4()
     28e4:	80 81       	ld	r24, Z
     28e6:	82 60       	ori	r24, 0x02	; 2
     28e8:	8c 93       	st	X, r24
-
-  TCCR4B |= 1 << CS41 | 1 << CS40; // prescaler 64
+  TCCR4B |= (1 << CS41 | 1 << CS40); // prescaler 64
     28ea:	a1 ea       	ldi	r26, 0xA1	; 161
     28ec:	b0 e0       	ldi	r27, 0x00	; 0
     28ee:	e1 ea       	ldi	r30, 0xA1	; 161
@@ -6316,8 +6309,7 @@ void init_timer4()
     28f2:	80 81       	ld	r24, Z
     28f4:	83 60       	ori	r24, 0x03	; 3
     28f6:	8c 93       	st	X, r24
-
-  TIMSK4 |= 1 << OCIE4A | 1 << ICIE4;
+  TIMSK4 |= (1 << OCIE4A | 1 << ICIE4);
     28f8:	a2 e7       	ldi	r26, 0x72	; 114
     28fa:	b0 e0       	ldi	r27, 0x00	; 0
     28fc:	e2 e7       	ldi	r30, 0x72	; 114
@@ -6325,7 +6317,6 @@ void init_timer4()
     2900:	80 81       	ld	r24, Z
     2902:	82 62       	ori	r24, 0x22	; 34
     2904:	8c 93       	st	X, r24
-
   TCCR4B |= (1 << ICES4); // Input capture on rising edge
     2906:	a1 ea       	ldi	r26, 0xA1	; 161
     2908:	b0 e0       	ldi	r27, 0x00	; 0
@@ -6334,23 +6325,20 @@ void init_timer4()
     290e:	80 81       	ld	r24, Z
     2910:	80 64       	ori	r24, 0x40	; 64
     2912:	8c 93       	st	X, r24
-
-  OCR4A = 17500;
+  OCR4A = 13;
     2914:	e8 ea       	ldi	r30, 0xA8	; 168
     2916:	f0 e0       	ldi	r31, 0x00	; 0
-    2918:	8c e5       	ldi	r24, 0x5C	; 92
-    291a:	94 e4       	ldi	r25, 0x44	; 68
+    2918:	8d e0       	ldi	r24, 0x0D	; 13
+    291a:	90 e0       	ldi	r25, 0x00	; 0
     291c:	91 83       	std	Z+1, r25	; 0x01
     291e:	80 83       	st	Z, r24
-
   sei();
     2920:	78 94       	sei
   us_per_count = 4; // 16MHz / 64 = 25000 counts/second => 1000000/250000
     2922:	84 e0       	ldi	r24, 0x04	; 4
     2924:	90 e0       	ldi	r25, 0x00	; 0
-    2926:	90 93 3d 03 	sts	0x033D, r25
-    292a:	80 93 3c 03 	sts	0x033C, r24
-
+    2926:	90 93 3f 03 	sts	0x033F, r25
+    292a:	80 93 3e 03 	sts	0x033E, r24
 }
     292e:	cf 91       	pop	r28
     2930:	df 91       	pop	r29
@@ -6379,6 +6367,8 @@ int main(void)
     2948:	cf 93       	push	r28
     294a:	cd b7       	in	r28, 0x3d	; 61
     294c:	de b7       	in	r29, 0x3e	; 62
+    static int IR_value, IR_oldvalue;
+
     DDRE &= ~(1<<IRsensor);
     294e:	ad e2       	ldi	r26, 0x2D	; 45
     2950:	b0 e0       	ldi	r27, 0x00	; 0
@@ -6387,8 +6377,7 @@ int main(void)
     2956:	80 81       	ld	r24, Z
     2958:	8f 7e       	andi	r24, 0xEF	; 239
     295a:	8c 93       	st	X, r24
-
-    lcd_D7_ddr |= (1<<lcd_D7_bit);                  // 4 data lines - output
+    lcd_D7_ddr |= (1<<lcd_D7_bit);
     295c:	a4 e2       	ldi	r26, 0x24	; 36
     295e:	b0 e0       	ldi	r27, 0x00	; 0
     2960:	e4 e2       	ldi	r30, 0x24	; 36
@@ -6420,9 +6409,7 @@ int main(void)
     298e:	80 81       	ld	r24, Z
     2990:	84 60       	ori	r24, 0x04	; 4
     2992:	8c 93       	st	X, r24
-
-// configure the microprocessor pins for the control lines
-    lcd_E_ddr |= (1<<lcd_E_bit);                    // E line - output
+    lcd_E_ddr |= (1<<lcd_E_bit);
     2994:	aa e0       	ldi	r26, 0x0A	; 10
     2996:	b1 e0       	ldi	r27, 0x01	; 1
     2998:	ea e0       	ldi	r30, 0x0A	; 10
@@ -6430,7 +6417,7 @@ int main(void)
     299c:	80 81       	ld	r24, Z
     299e:	84 60       	ori	r24, 0x04	; 4
     29a0:	8c 93       	st	X, r24
-    lcd_RS_ddr |= (1<<lcd_RS_bit);                  // RS line - output
+    lcd_RS_ddr |= (1<<lcd_RS_bit);
     29a2:	aa e0       	ldi	r26, 0x0A	; 10
     29a4:	b1 e0       	ldi	r27, 0x01	; 1
     29a6:	ea e0       	ldi	r30, 0x0A	; 10
@@ -6450,8 +6437,6 @@ int main(void)
     29bc:	92 e0       	ldi	r25, 0x02	; 2
     29be:	0e 94 f5 0c 	call	0x19ea	; 0x19ea <lcd_write_string_4d>
 
-
-    static int IR_value, IR_oldvalue;
 
     DDRC |= 1 << PINC4;
     29c2:	a7 e2       	ldi	r26, 0x27	; 39
@@ -6479,10 +6464,10 @@ int main(void)
     while(1)
     {
         IR_oldvalue = IR_value;
-    29e6:	80 91 36 03 	lds	r24, 0x0336
-    29ea:	90 91 37 03 	lds	r25, 0x0337
-    29ee:	90 93 35 03 	sts	0x0335, r25
-    29f2:	80 93 34 03 	sts	0x0334, r24
+    29e6:	80 91 38 03 	lds	r24, 0x0338
+    29ea:	90 91 39 03 	lds	r25, 0x0339
+    29ee:	90 93 37 03 	sts	0x0337, r25
+    29f2:	80 93 36 03 	sts	0x0336, r24
         if (PINE & (1<<IRsensor))
     29f6:	ec e2       	ldi	r30, 0x2C	; 44
     29f8:	f0 e0       	ldi	r31, 0x00	; 0
@@ -6492,34 +6477,35 @@ int main(void)
     2a00:	80 71       	andi	r24, 0x10	; 16
     2a02:	90 70       	andi	r25, 0x00	; 0
     2a04:	00 97       	sbiw	r24, 0x00	; 0
-    2a06:	39 f0       	breq	.+14     	; 0x2a16 <main+0xd0>
+    2a06:	29 f0       	breq	.+10     	; 0x2a12 <main+0xcc>
         {
-            IR_value = detected;
-    2a08:	81 e0       	ldi	r24, 0x01	; 1
-    2a0a:	90 e0       	ldi	r25, 0x00	; 0
-    2a0c:	90 93 37 03 	sts	0x0337, r25
-    2a10:	80 93 36 03 	sts	0x0336, r24
-    2a14:	04 c0       	rjmp	.+8      	; 0x2a1e <main+0xd8>
+            IR_value = notDetected;
+    2a08:	10 92 39 03 	sts	0x0339, r1
+    2a0c:	10 92 38 03 	sts	0x0338, r1
+    2a10:	06 c0       	rjmp	.+12     	; 0x2a1e <main+0xd8>
         }
         else
         {
-            IR_value = notDetected;
-    2a16:	10 92 37 03 	sts	0x0337, r1
-    2a1a:	10 92 36 03 	sts	0x0336, r1
+            IR_value = detected;
+    2a12:	81 e0       	ldi	r24, 0x01	; 1
+    2a14:	90 e0       	ldi	r25, 0x00	; 0
+    2a16:	90 93 39 03 	sts	0x0339, r25
+    2a1a:	80 93 38 03 	sts	0x0338, r24
         }
 
+
         if(IR_value == IR_oldvalue)
-    2a1e:	20 91 36 03 	lds	r18, 0x0336
-    2a22:	30 91 37 03 	lds	r19, 0x0337
-    2a26:	80 91 34 03 	lds	r24, 0x0334
-    2a2a:	90 91 35 03 	lds	r25, 0x0335
+    2a1e:	20 91 38 03 	lds	r18, 0x0338
+    2a22:	30 91 39 03 	lds	r19, 0x0339
+    2a26:	80 91 36 03 	lds	r24, 0x0336
+    2a2a:	90 91 37 03 	lds	r25, 0x0337
     2a2e:	28 17       	cp	r18, r24
     2a30:	39 07       	cpc	r19, r25
     2a32:	d9 f4       	brne	.+54     	; 0x2a6a <main+0x124>
         {
             if(IR_value == detected)
-    2a34:	80 91 36 03 	lds	r24, 0x0336
-    2a38:	90 91 37 03 	lds	r25, 0x0337
+    2a34:	80 91 38 03 	lds	r24, 0x0338
+    2a38:	90 91 39 03 	lds	r25, 0x0339
     2a3c:	81 30       	cpi	r24, 0x01	; 1
     2a3e:	91 05       	cpc	r25, r1
     2a40:	39 f4       	brne	.+14     	; 0x2a50 <main+0x10a>
@@ -6528,15 +6514,15 @@ int main(void)
                 lcd_write_instruction_4d(xPosition(0) | lcd_LineTwo);
     2a42:	80 ec       	ldi	r24, 0xC0	; 192
     2a44:	0e 94 00 10 	call	0x2000	; 0x2000 <lcd_write_instruction_4d>
-                lcd_write_string_4d("Object detected");
+                lcd_write_string_4d("Object detected ");
     2a48:	8b e0       	ldi	r24, 0x0B	; 11
     2a4a:	92 e0       	ldi	r25, 0x02	; 2
     2a4c:	0e 94 f5 0c 	call	0x19ea	; 0x19ea <lcd_write_string_4d>
             }
 
             if(IR_value == notDetected)
-    2a50:	80 91 36 03 	lds	r24, 0x0336
-    2a54:	90 91 37 03 	lds	r25, 0x0337
+    2a50:	80 91 38 03 	lds	r24, 0x0338
+    2a54:	90 91 39 03 	lds	r25, 0x0339
     2a58:	00 97       	sbiw	r24, 0x00	; 0
     2a5a:	39 f4       	brne	.+14     	; 0x2a6a <main+0x124>
             {
@@ -6544,27 +6530,28 @@ int main(void)
     2a5c:	80 ec       	ldi	r24, 0xC0	; 192
     2a5e:	0e 94 00 10 	call	0x2000	; 0x2000 <lcd_write_instruction_4d>
                 lcd_write_string_4d("Nothing detected");
-    2a62:	8b e1       	ldi	r24, 0x1B	; 27
+    2a62:	8c e1       	ldi	r24, 0x1C	; 28
     2a64:	92 e0       	ldi	r25, 0x02	; 2
     2a66:	0e 94 f5 0c 	call	0x19ea	; 0x19ea <lcd_write_string_4d>
             }
         }
 
+
         lcd_write_instruction_4d(xPosition(10) | lcd_LineOne);
     2a6a:	8a e8       	ldi	r24, 0x8A	; 138
     2a6c:	0e 94 00 10 	call	0x2000	; 0x2000 <lcd_write_instruction_4d>
         LCDWriteInt(dist, 3);
-    2a70:	80 91 3a 03 	lds	r24, 0x033A
-    2a74:	90 91 3b 03 	lds	r25, 0x033B
+    2a70:	80 91 3c 03 	lds	r24, 0x033C
+    2a74:	90 91 3d 03 	lds	r25, 0x033D
     2a78:	63 e0       	ldi	r22, 0x03	; 3
     2a7a:	70 e0       	ldi	r23, 0x00	; 0
     2a7c:	0e 94 db 0d 	call	0x1bb6	; 0x1bb6 <LCDWriteInt>
 
-        h_bridge_set_percentage_rechts(80);
-    2a80:	80 e5       	ldi	r24, 0x50	; 80
+        h_bridge_set_percentage_rechts(-40);
+    2a80:	88 ed       	ldi	r24, 0xD8	; 216
     2a82:	0e 94 f3 02 	call	0x5e6	; 0x5e6 <h_bridge_set_percentage_rechts>
-        h_bridge_set_percentage_links(-80);
-    2a86:	80 eb       	ldi	r24, 0xB0	; 176
+        h_bridge_set_percentage_links(40);
+    2a86:	88 e2       	ldi	r24, 0x28	; 40
     2a88:	0e 94 47 03 	call	0x68e	; 0x68e <h_bridge_set_percentage_links>
     2a8c:	ac cf       	rjmp	.-168    	; 0x29e6 <main+0xa0>
 
@@ -6640,7 +6627,7 @@ int main(void)
     2b1c:	98 17       	cp	r25, r24
     2b1e:	09 f4       	brne	.+2      	; 0x2b22 <_fpadd_parts+0x3c>
     2b20:	28 c1       	rjmp	.+592    	; 0x2d72 <_fpadd_parts+0x28c>
-    2b22:	ac e2       	ldi	r26, 0x2C	; 44
+    2b22:	ad e2       	ldi	r26, 0x2D	; 45
     2b24:	b2 e0       	ldi	r27, 0x02	; 2
     2b26:	25 c1       	rjmp	.+586    	; 0x2d72 <_fpadd_parts+0x28c>
     2b28:	84 30       	cpi	r24, 0x04	; 4
@@ -7069,7 +7056,7 @@ int main(void)
     2e8a:	29 f4       	brne	.+10     	; 0x2e96 <__mulsf3+0x5c>
     2e8c:	92 30       	cpi	r25, 0x02	; 2
     2e8e:	81 f4       	brne	.+32     	; 0x2eb0 <__mulsf3+0x76>
-    2e90:	8c e2       	ldi	r24, 0x2C	; 44
+    2e90:	8d e2       	ldi	r24, 0x2D	; 45
     2e92:	92 e0       	ldi	r25, 0x02	; 2
     2e94:	c6 c0       	rjmp	.+396    	; 0x3022 <__mulsf3+0x1e8>
     2e96:	92 30       	cpi	r25, 0x02	; 2
@@ -7325,7 +7312,7 @@ int main(void)
     3090:	23 17       	cp	r18, r19
     3092:	09 f0       	breq	.+2      	; 0x3096 <__divsf3+0x68>
     3094:	6e c0       	rjmp	.+220    	; 0x3172 <__divsf3+0x144>
-    3096:	6c e2       	ldi	r22, 0x2C	; 44
+    3096:	6d e2       	ldi	r22, 0x2D	; 45
     3098:	72 e0       	ldi	r23, 0x02	; 2
     309a:	6e c0       	rjmp	.+220    	; 0x3178 <__divsf3+0x14a>
     309c:	34 30       	cpi	r19, 0x04	; 4
@@ -7821,7 +7808,7 @@ int main(void)
     3488:	8a 95       	dec	r24
     348a:	d2 f7       	brpl	.-12     	; 0x3480 <__clzsi2+0x76>
     348c:	f7 01       	movw	r30, r14
-    348e:	ec 5c       	subi	r30, 0xCC	; 204
+    348e:	eb 5c       	subi	r30, 0xCB	; 203
     3490:	fd 4f       	sbci	r31, 0xFD	; 253
     3492:	80 81       	ld	r24, Z
     3494:	28 1b       	sub	r18, r24
